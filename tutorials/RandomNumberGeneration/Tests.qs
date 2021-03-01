@@ -17,7 +17,7 @@ namespace Quantum.Kata.RandomNumberGeneration {
     open Microsoft.Quantum.Random;
 
     // Exercise 1.
-    @Test("Microsoft.Quantum.Katas.CounterSimulator")
+    @Test("QuantumSimulator")
     operation T1_RandomBit () : Unit {
         Message("Testing...");
         CheckFlatDistribution(RandomBit_Wrapper, 1, 0.4, 0.6, 1000, 450);
@@ -29,7 +29,7 @@ namespace Quantum.Kata.RandomNumberGeneration {
 
 
     // Exercise 2.
-    @Test("Microsoft.Quantum.Katas.CounterSimulator")
+    @Test("QuantumSimulator")
     operation T2_RandomTwoBits () : Unit {
         Message("Testing...");
         CheckFlatDistribution(RandomTwoBits_Wrapper, 2, 1.4, 1.6, 1000, 200);
@@ -41,7 +41,7 @@ namespace Quantum.Kata.RandomNumberGeneration {
     
 
     // Exercise 3.
-    @Test("Microsoft.Quantum.Katas.CounterSimulator")
+    @Test("QuantumSimulator")
     operation T3_RandomNBits () : Unit {
         Message("Testing N = 1...");
         CheckFlatDistribution(RandomNBits, 1, 0.4, 0.6, 1000, 450);
@@ -72,7 +72,7 @@ namespace Quantum.Kata.RandomNumberGeneration {
         mutable average = 0.0;
 
         ResetOracleCallsCount();
-        for (i in 1..nRuns) {
+        for i in 1..nRuns {
             let val = f(numBits);
             if (val < 0 or val >= max) {
                 fail $"Unexpected number generated. Expected values from 0 to {max - 1}, generated {val}";
@@ -93,7 +93,7 @@ namespace Quantum.Kata.RandomNumberGeneration {
 
         }
 
-        for (i in 0..max - 1) {
+        for i in 0..max - 1 {
             if (counts[i] < minimumCopiesGenerated) {
                 fail $"Unexpectedly low number of {i}'s generated. Only {counts[i]} out of {nRuns} were {i}";
             }
@@ -102,7 +102,7 @@ namespace Quantum.Kata.RandomNumberGeneration {
 
     operation FindMedian (counts : Int [], arrSize : Int, sampleSize : Int) : Int {
         mutable totalCount = 0;
-        for (i in 0..arrSize - 1) {
+        for i in 0..arrSize - 1 {
             set totalCount = totalCount + counts[i];
             if (totalCount >= sampleSize / 2) {
                 return i;
@@ -113,7 +113,7 @@ namespace Quantum.Kata.RandomNumberGeneration {
 
 
     // Exercise 4.
-    @Test("Microsoft.Quantum.Katas.CounterSimulator")
+    @Test("QuantumSimulator")
     operation T4_WeightedRandomBit () : Unit {
         ResetOracleCallsCount();
         CheckXPercentZero(0.0);
@@ -129,7 +129,7 @@ namespace Quantum.Kata.RandomNumberGeneration {
         mutable oneCount = 0;
         let nRuns = 1000;
         ResetOracleCallsCount();
-        for (N in 1..nRuns) {
+        for N in 1..nRuns {
             let val = WeightedRandomBit(x);
             if (val < 0 or val > 1) {
                 fail $"Unexpected number generated. Expected 0 or 1, instead generated {val}";
@@ -156,7 +156,7 @@ namespace Quantum.Kata.RandomNumberGeneration {
     
 
     // Exercise 5.
-    @Test("Microsoft.Quantum.Katas.CounterSimulator")
+    @Test("QuantumSimulator")
     operation T5_RandomNumberInRange () : Unit {
         Message("Testing...");
         CheckFlatDistributionRange(RandomNumberInRange, 1, 3, 1.8, 2.2, 1000, 200);
@@ -170,7 +170,7 @@ namespace Quantum.Kata.RandomNumberGeneration {
         mutable average = 0.0;
 
         ResetOracleCallsCount();
-        for (i in 1..nRuns) {
+        for i in 1..nRuns {
             let val = f(min, max);
             if (val < min or val > max) {
                 fail $"Unexpected number generated. Expected values from {min} to {max}, generated {val}";
@@ -191,7 +191,7 @@ namespace Quantum.Kata.RandomNumberGeneration {
 
         }
 
-        for (i in min..max) {
+        for i in min..max {
             if (counts[i] < minimumCopiesGenerated) {
                 fail $"Unexpectedly low number of {i}'s generated. Only {counts[i]} out of {nRuns} were {i}";
             }
